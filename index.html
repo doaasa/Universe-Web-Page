@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="st.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="workspage.html">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1&display=swap" rel="stylesheet">
+</head>
+<body>
+ <div id="home" class="cont">
+     <ul>
+         <li>
+           <a style="color: beige;"> 01 : Home | </a>
+         </li>
+         <li>
+            <a href="workspage.html">  02 : Works | </a>
+        </li>
+        <li>
+            <a href="About.html">  03 : About Me |</a>
+        </li>
+        <li>
+          <a href="Gallery.html">  04 : Gallery |</a>
+      </li>
+        <li>
+            <a href="Contact.html"> 05 : Contact  </a>
+        </li>   
+       
+     </ul>
+     
+     <div  class="navbar" style="background-image: url(img/13.jpg); width:100%;
+      height: 574px; background-repeat: no-repeat;">
+        <h1 style="float: left; font-family:Khula; padding-top: 14px;
+        font-size:5em; margin-left:1cm;
+          color:rgb(255, 255, 255)">
+            Hello,
+        </h1>
+        <div class='console-container'  style=" margin-left: 1cm; "><span id='text'>
+        </span><div class='console-underscore' id='console'>&#95;</div></div>
+    
+    </div>
+    
+</div>
+<style>
+li{
+    display: inline-flex;
+    padding:20px;
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: lighter;
+    font-size: 20px;
+    
+}
+.cont{
+    background-color: black ;
+}
+a{
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: lighter;
+    color:rgba(255, 255, 255, 0.603);
+}
+a:hover{
+    color:rgba(255, 255, 255, 0.603);
+}
+body {
+
+	 height: 40vh;
+	 background-color: black;
+}
+
+@media (min-width: 768px) {
+    .card img {
+      height: 11em;
+    }
+}
+</style>   
+<script>
+// function([string1, string2],target id,[color1,color2])    
+consoleText(['I am James Dean', 'French Astronaut', 'Working for Nasa'],
+'text',['white','white','white']);
+
+function consoleText(words, id, colors) {
+  if (colors === undefined) colors = ['#fff'];
+  var visible = true;
+  var con = document.getElementById('console');
+  var letterCount = 1;
+  var x = 1;
+  var waiting = false;
+  var target = document.getElementById(id)
+  target.setAttribute('style', 'color:' + colors[0])
+  window.setInterval(function() {
+
+    if (letterCount === 0 && waiting === false) {
+      waiting = true;
+      target.innerHTML = words[0].substring(0, letterCount)
+      window.setTimeout(function() {
+        var usedColor = colors.shift();
+        colors.push(usedColor);
+        var usedWord = words.shift();
+        words.push(usedWord);
+        x = 1;
+        target.setAttribute('style', 'color:' + colors[0])
+        letterCount += x;
+        waiting = false;
+      }, 1000)
+    } else if (letterCount === words[0].length + 1 && waiting === false) {
+      waiting = true;
+      window.setTimeout(function() {
+        x = -1;
+        letterCount += x;
+        waiting = false;
+      }, 1000)
+    } else if (waiting === false) {
+      target.innerHTML = words[0].substring(0, letterCount)
+      letterCount += x;
+    }
+  }, 120)
+  window.setInterval(function() {
+    if (visible === true) {
+      con.className = 'console-underscore hidden'
+      visible = false;
+
+    } else {
+      con.className = 'console-underscore'
+
+      visible = true;
+    }
+  }, 400)
+}
+</script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.js"></script> 
+</body>
+</html>
